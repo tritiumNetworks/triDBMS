@@ -50,6 +50,19 @@ function v1Handler (req, res) {
       break
     }
 
+    case 'listImg': {
+      let str = ''
+      fileHandler(target, 'list', (result) => {
+        if (result.success) {
+          result.data.forEach((d) => {
+            str += '<img width="100" src="/static/' + target + '/' + d + '">'
+          })
+          res.send(str)
+        } else res.sendStatus(result.data)
+      })
+      break
+    }
+
     default:
       res.sendStatus(404)
   }
