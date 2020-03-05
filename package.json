@@ -1,0 +1,31 @@
+{
+  "name": "tridbms",
+  "version": "1.0.0",
+  "description": "DataBase Manager for TriNet Image DB",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tritiumNetworks/triDBMS.git"
+  },
+  "author": "TriNet / PMH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tritiumNetworks/triDBMS/issues"
+  },
+  "homepage": "https://github.com/tritiumNetworks/triDBMS#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
