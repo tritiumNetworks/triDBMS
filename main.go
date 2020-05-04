@@ -28,8 +28,7 @@ func main() {
 
 	fmt.Println("TriDBMS is now on https://localhost" + PORT)
 
-	// err := http.ListenAndServe(PORT, nil) // For Develop
-	err := http.ListenAndServeTLS(PORT, "./cert/trinets-cert.pem", "./cert/trinets-key.pem", nil) // For Publish
+	err := http.ListenAndServe(PORT, nil)
 	erring(err)
 }
 
