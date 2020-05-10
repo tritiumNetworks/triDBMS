@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 	"triDBMS/api"
 )
 
@@ -14,21 +15,30 @@ func main() {
 		PORT = ":" + value
 	}
 
+	mux := &http.ServeMux{}
+	srv := &http.Server{
+		Addr:         PORT,
+		Handler:      mux,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  120 * time.Second,
+	}
+
 	docs := http.FileServer(http.Dir("./docs"))
 	static := http.FileServer(http.Dir("./datas"))
 
 	docs = http.StripPrefix("/docs/", docs)
 	static = http.StripPrefix("/static/", static)
 
-	http.Handle("/docs/", docs)
-	http.Handle("/static/", static)
+	mux.Handle("/docs/", docs)
+	mux.Handle("/static/", static)
 
-	http.HandleFunc("/", api.Redirect)
-	http.HandleFunc("/api/", api.Route)
+	mux.HandleFunc("/", api.Redirect)
+	mux.HandleFunc("/api/", api.Route)
 
-	fmt.Println("TriDBMS is now on https://localhost" + PORT)
+	fmt.Println("TriDBMS is now on http://localhost" + PORT)
 
-	err := http.ListenAndServe(PORT, nil)
+	err := srv.ListenAndServe()
 	erring(err)
 }
 
